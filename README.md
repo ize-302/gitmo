@@ -47,6 +47,8 @@ You get this prompt:
 ? commit message › ENTER COMMIT MESSAGE HERE
 ```
 
+press ENTER
+
 ---
 
 ### Resources used
