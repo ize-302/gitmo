@@ -80,7 +80,7 @@ const showCommitPrompt = async () => {
   if (commitMessage) {
     const ctype = await isConventionalCommit(commitMessage);
     if (ctype) {
-      const updatedCommitMessage = response.commitMessage + " " + ctype?.emoji;
+      const updatedCommitMessage = ctype?.emoji + " " + response.commitMessage;
       console.log("COMMIT MESSAGE:", updatedCommitMessage);
       shell.exec(`git commit -m '${updatedCommitMessage}'`);
     } else {
