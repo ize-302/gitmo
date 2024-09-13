@@ -37,6 +37,7 @@ gitmo --help
 ## How to commit
 
 ```bash
+# Note: This should be done after staging your changes
 gitmo -c
 ```
 
