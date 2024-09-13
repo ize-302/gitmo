@@ -21,7 +21,7 @@ gitmo --help
 ```
 
 ```
-  An cli tool that adds appropriate emoji
+  A cli tool that adds appropriate emoji
   to your commit message based on conventional commits specification
 
   Usage

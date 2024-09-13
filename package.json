@@ -1,7 +1,7 @@
 {
   "name": "gitmo",
   "version": "1.0.0",
-  "description": "An cli tool that adds appropriate emoji to your commit message based on conventional commits specification",
+  "description": "A cli tool that adds appropriate emoji to your commit message based on conventional commits specification",
   "bin": {
     "gitmo": "dist/cli.js"
   },
