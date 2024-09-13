@@ -51,6 +51,18 @@ press ENTER
 
 ---
 
+## Development
+
+```bash
+# Build
+bun run build
+
+# Run command
+./dist/cli.js gitmo -c
+```
+
+---
+
 ### Resources used
 
 - [Conventional commit types](https://github.com/pvdlg/conventional-commit-types)
