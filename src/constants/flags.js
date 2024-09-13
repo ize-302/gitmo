@@ -1,8 +1,8 @@
 const FLAGS = Object.freeze({
-  COMMIT: 'commit',
-  HELP: 'help',
-  UPDATE: 'update',
-  VERSION: 'version',
-})
+	COMMIT: "commit",
+	HELP: "help",
+	UPDATE: "update",
+	VERSION: "version",
+});
 
-export default FLAGS
+export default FLAGS;
