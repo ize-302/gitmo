@@ -122,7 +122,7 @@ export const handleCommand = (cli) => {
   } else if (cli.flags.help) {
     cli.showHelp();
   } else if (cli.flags.update) {
-    console.log("update cli");
+    shell.exec(`npm i -g gitmo`);
   } else if (cli.flags.commit) {
     showCommitPrompt();
   }
