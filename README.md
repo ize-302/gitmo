@@ -2,6 +2,10 @@
 
 > A cli tool that adds appropriate emoji to your commit messages based on conventional commits specification
 
+<!-- [[!demo.mov](demo.mov)] -->
+
+[![Demo](./demo.gif)](./demo.gif)
+
 ## About
 
 This cli was built as a simpler alternative to [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli). There is no step to pick an emoji, we simply determine the appropriate emoji to use based on your commit message and include it in your message
