@@ -9,7 +9,9 @@
   "scripts": {
     "build": "bun run build.mjs",
     "prepublishOnly": "bun run build",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "lint": "bunx @biomejs/biome check src",
+    "lint:fix": "bun lint --write"
   },
   "engines": {
     "node": ">=18"
@@ -41,6 +43,7 @@
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.0",
     "@types/bun": "latest",
     "@types/prompts": "^2.4.9",
     "@types/shelljs": "^0.8.15",
