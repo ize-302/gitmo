@@ -1,0 +1,50 @@
+{
+  "name": "gitmo",
+  "version": "1.0.0",
+  "description": "An cli tool that adds appropriate emoji to your commit message based on conventional commits specification",
+  "bin": {
+    "gitmo": "dist/cli.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "bun run build.mjs",
+    "prepublishOnly": "bun run build",
+    "clean": "rm -rf dist"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ize-302/gitmo.git"
+  },
+  "keywords": [
+    "emoji",
+    "conventional commit"
+  ],
+  "author": {
+    "name": "ize-302",
+    "email": "adavize302@gmail.com",
+    "url": "https://ize-302.dev"
+  },
+  "bugs": {
+    "url": "https://github.com/ize-302/gitmo/issues"
+  },
+  "homepage": "https://github.com/ize-302/gitmo",
+  "dependencies": {
+    "meow": "^13.2.0",
+    "prompts": "^2.4.2",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/prompts": "^2.4.9",
+    "@types/shelljs": "^0.8.15",
+    "typescript": "^5.6.2"
+  },
+  "module": "index.ts"
+}
