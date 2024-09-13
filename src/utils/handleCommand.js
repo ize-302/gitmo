@@ -59,6 +59,15 @@ const isConventionalCommit = async (commitMessage) => {
 };
 
 const showCommitPrompt = async () => {
+  // check if there are staged changes
+  const status = shell.exec('git status --porcelain', { silent: true }).stdout;
+  // Parse the status output
+  const stagedChanges = status.split('\n').filter(line => line.startsWith('A ') || line.startsWith('M '));
+  if (stagedChanges.length === 0) {
+    console.log('You have no changes staged for commit!');
+    return;
+  }
+
   const response = await prompts(
     {
       type: "text",
