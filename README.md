@@ -25,17 +25,22 @@ gitmo --help
 ```
 
 ```
-  A cli tool that adds appropriate emoji
-  to your commit message based on conventional commits specification
+Usage: gitmo [options] [command]
 
-  Usage
-    $ gitmo [option] [command]
-  Options
-    --commit, -c     Add commit using the gitmo
-    --version, -v    Print current installed version
-    --update, -u     Update gitmo cli
-  Examples
-    $ gitmo -c
+A cli tool that adds appropriate emoji to your commit message based on conventional commits specification
+
+Options:
+  -V, --version   output the version number
+  -h, --help      display help for command
+
+Commands:
+  cm [message]    Submit commit
+  ac [message]    Ament last commit
+  update          Update gitmo cli
+  help [command]  display help for command
+
+Example:
+  gitmo cm "feat: first commit"
 ```
 
 ## Commit types
@@ -60,7 +65,7 @@ gitmo --help
 
 ```bash
 # Note: This should be done after staging your changes
-gitmo -c
+gitmo cm
 ```
 
 You get this prompt:
@@ -80,7 +85,7 @@ press ENTER
 bun run build
 
 # Run command
-./dist/cli.js gitmo -c
+./dist/cli.js gitmo cm
 ```
 
 ---

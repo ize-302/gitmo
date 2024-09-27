@@ -1,6 +1,6 @@
 await Bun.build({
   target: 'node',
-  entrypoints: ['./src/cli.ts'],
+  entrypoints: ['./src/index.ts'],
   outdir: './dist',
   minify: true,
   external: ['shelljs'],

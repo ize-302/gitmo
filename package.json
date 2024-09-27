@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A cli tool that adds appropriate emoji to your commit message based on conventional commits specification",
   "bin": {
-    "gitmo": "dist/cli.js"
+    "gitmo": "./dist/index.js"
   },
   "type": "module",
   "scripts": {
@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/ize-302/gitmo",
   "dependencies": {
-    "meow": "^13.2.0",
+    "commander": "^12.1.0",
     "prompts": "^2.4.2",
     "shelljs": "^0.8.5"
   },
@@ -49,5 +49,6 @@
     "@types/shelljs": "^0.8.15",
     "typescript": "^5.6.2"
   },
-  "module": "index.ts"
+  "module": "index.ts",
+  "main": "dist/index.js"
 }
