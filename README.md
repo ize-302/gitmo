@@ -85,7 +85,7 @@ press ENTER
 bun run build
 
 # Run command
-./dist/cli.js gitmo cm
+node ./dist/cli.js gitmo cm
 ```
 
 ---

@@ -1,15 +1,11 @@
 import prompts from "prompts";
-
-const onCancel = () => {
-	console.log("Exited Gitmo!");
-	process.exit(1);
-};
+import onCancel from "@/utils/onCancel.js";
 
 const optionsPrompt = async () => {
 	const response = await prompts(
 		{
 			type: "select",
-			name: "continue",
+			name: "choice",
 			message: "Not a conventional commit. continue anyway?",
 			choices: [
 				{ title: "Yes", value: "yes" },

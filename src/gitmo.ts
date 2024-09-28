@@ -4,6 +4,7 @@ import packageJson from "../package.json";
 
 import transformMessage from "@/utils/transformMessage.js";
 import hasStagedChanges from "@/utils/hasStagedChanges.js";
+import commitMessagePrompt from "@/utils/commitMessagePrompt.js";
 
 shell.config.silent = false;
 
@@ -26,11 +27,34 @@ const gitmo = () => {
 				if (stagedChagesExists) {
 					if (message) {
 						const transformedMessage = await transformMessage(message);
-						console.log(transformedMessage); // commit this
+						shell.exec(`git commit -m '${transformedMessage}'`);
 					} else {
-						console.log("prompt");
+						const response = await commitMessagePrompt();
+						const transformedMessage = await transformMessage(response.commitMessage);
+						shell.exec(`git commit -m '${transformedMessage}'`);
 					}
 				}
+			});
+
+		program
+			.command("ac [message]")
+			.description("Ament last commit")
+			.action(async (message) => {
+				if (message) {
+					const transformedMessage = await transformMessage(message);
+					shell.exec(`git commit --amend -m '${transformedMessage}'`);
+				} else {
+					const response = await commitMessagePrompt();
+					const transformedMessage = await transformMessage(response.commitMessage);
+					shell.exec(`git commit --amend -m '${transformedMessage}'`);
+				}
+			});
+
+		program
+			.command("update")
+			.description("Update gitmo cli")
+			.action(() => {
+				shell.exec("npm i -g gitmo");
 			});
 
 		// Parse the command-line arguments

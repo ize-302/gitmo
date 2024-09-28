@@ -1,5 +1,6 @@
 import emojisData from "@/emojis-data.json";
-import optionsPrompt from "./optionsPrompt.js";
+import optionsPrompt from "@/utils/optionsPrompt.js";
+import commitMessagePrompt from "@/utils/commitMessagePrompt.js";
 
 // this adds appropriate emoji to message
 const transformMessage = async (originalMessage: string) => {
@@ -9,9 +10,15 @@ const transformMessage = async (originalMessage: string) => {
 		const findMatchedEmoji = emojisData.find((item) => item.name === getMatchedPrefix);
 		return `${originalMessage} ${findMatchedEmoji?.emoji}`;
 	}
-	console.log("Not a conventional commit");
-	await optionsPrompt();
-	return;
+	// ("Not a conventional commit. Pick an option to continue");
+	const optionsPromptResponse = await optionsPrompt();
+	if (optionsPromptResponse.choice === "yes") {
+		return originalMessage;
+	}
+	if (optionsPromptResponse.choice === "correction") {
+		const response = await commitMessagePrompt(originalMessage);
+		return await transformMessage(response.commitMessage);
+	}
 };
 
 export default transformMessage;
