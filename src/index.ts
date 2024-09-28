@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import { init } from "./gitmo.js";
+import gitmo from "./gitmo.js";
 
-init();
+gitmo();

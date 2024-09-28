@@ -1,14 +1,15 @@
 import prompts from "prompts";
-import onCancel from "./onCancel.js";
+import onCancel from "@/utils/onCancel.js";
 
-const promptContinue = async () => {
+const optionsPrompt = async () => {
 	const response = await prompts(
 		{
 			type: "select",
-			name: "continue",
-			message: "continue anyway?",
+			name: "choice",
+			message: "Not a conventional commit. continue anyway?",
 			choices: [
 				{ title: "Yes", value: "yes" },
+				{ title: "Edit commit message", value: "correction" },
 				{ title: "Cancel", value: "cancel" },
 			],
 			instructions: false,
@@ -18,4 +19,4 @@ const promptContinue = async () => {
 	return response;
 };
 
-export default promptContinue;
+export default optionsPrompt;

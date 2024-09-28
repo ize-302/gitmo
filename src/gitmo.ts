@@ -1,18 +1,16 @@
 import { Command } from "commander";
 import shell from "shelljs";
-
-import hasStagedChanges from "@/utils/hasStagedChanges.js";
-import isConventionalCommit from "@/utils/isConventionalCommit.js";
-import onCancel from "@/utils/onCancel.js";
-import promptContinue from "@/utils/promptContinue.js";
-import showCommitMessagePrompt from "@/utils/showCommitMessagePrompt.js";
 import packageJson from "../package.json";
+
+import transformMessage from "@/utils/transformMessage.js";
+import hasStagedChanges from "@/utils/hasStagedChanges.js";
+import commitMessagePrompt from "@/utils/commitMessagePrompt.js";
 
 shell.config.silent = false;
 
 const program = new Command();
 
-export const init = () => {
+const gitmo = () => {
 	try {
 		program
 			.name("gitmo")
@@ -25,22 +23,15 @@ export const init = () => {
 			.command("cm [message]")
 			.description("Submit commit")
 			.action(async (message) => {
-				if (!message) {
-					if (hasStagedChanges()) {
-						const modifiedMessage = await showCommitMessagePrompt();
-						shell.exec(`git commit -m '${modifiedMessage}'`);
-					}
-				} else {
-					const isValidCommit = await isConventionalCommit(message);
-					if (isValidCommit) {
-						shell.exec(`git commit -m '${message}'`);
+				const stagedChagesExists = await hasStagedChanges();
+				if (stagedChagesExists) {
+					if (message) {
+						const transformedMessage = await transformMessage(message);
+						shell.exec(`git commit -m '${transformedMessage}'`);
 					} else {
-						const response = await promptContinue();
-						if (response.continue === "yes") {
-							shell.exec(`git commit -m '${message}'`);
-						} else {
-							onCancel();
-						}
+						const response = await commitMessagePrompt();
+						const transformedMessage = await transformMessage(response.commitMessage);
+						shell.exec(`git commit -m '${transformedMessage}'`);
 					}
 				}
 			});
@@ -49,21 +40,13 @@ export const init = () => {
 			.command("ac [message]")
 			.description("Ament last commit")
 			.action(async (message) => {
-				if (!message) {
-          const modifiedMessage = await showCommitMessagePrompt();
-          shell.exec(`git commit -m '${modifiedMessage}'`);
+				if (message) {
+					const transformedMessage = await transformMessage(message);
+					shell.exec(`git commit --amend -m '${transformedMessage}'`);
 				} else {
-					const isValidCommit = await isConventionalCommit(message);
-					if (isValidCommit) {
-						shell.exec(`git commit --amend -m '${message}'`);
-					} else {
-						const response = await promptContinue();
-						if (response.continue === "yes") {
-							shell.exec(`git commit --amend -m '${message}'`);
-						} else {
-							onCancel();
-						}
-					}
+					const response = await commitMessagePrompt();
+					const transformedMessage = await transformMessage(response.commitMessage);
+					shell.exec(`git commit --amend -m '${transformedMessage}'`);
 				}
 			});
 
@@ -71,7 +54,7 @@ export const init = () => {
 			.command("update")
 			.description("Update gitmo cli")
 			.action(() => {
-        shell.exec("npm i -g gitmo");
+				shell.exec("npm i -g gitmo");
 			});
 
 		// Parse the command-line arguments
@@ -81,3 +64,5 @@ export const init = () => {
 		process.exit(1);
 	}
 };
+
+export default gitmo;
