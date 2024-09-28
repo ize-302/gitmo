@@ -6,9 +6,10 @@ const promptContinue = async () => {
 		{
 			type: "select",
 			name: "continue",
-			message: "continue anyway?",
+			message: "Not a conventional commit. continue anyway?",
 			choices: [
 				{ title: "Yes", value: "yes" },
+				{ title: "Edit commit message", value: "correction" },
 				{ title: "Cancel", value: "cancel" },
 			],
 			instructions: false,

@@ -1,0 +1,7 @@
+$ gitmo cm
+
+
+$ gitmo cm "MESSAGE"
+
+- get original message
+- transform original message
