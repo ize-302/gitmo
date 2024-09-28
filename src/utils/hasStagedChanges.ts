@@ -7,7 +7,7 @@ const hasStagedChanges = () => {
 	const stagedChanges = gitStatus.split("\n").filter((line) => /^[AM] /.test(line));
 
 	if (stagedChanges.length === 0) {
-		console.log("You have no changes staged for commit. Please stage you commit before continuing!");
+		console.log("You have no changes staged for commit. Please stage your commit before continuing!");
 		return false;
 	}
 	return true;
