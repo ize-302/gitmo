@@ -1,54 +1,52 @@
 {
-  "name": "gitmo",
-  "version": "1.0.0",
-  "description": "A cli tool that adds appropriate emoji to your commit message based on conventional commits specification",
-  "bin": {
-    "gitmo": "./dist/index.js"
-  },
-  "type": "module",
-  "scripts": {
-    "build": "bun run build.mjs",
-    "prepublishOnly": "bun run build",
-    "clean": "rm -rf dist",
-    "lint": "bunx @biomejs/biome check src",
-    "lint:fix": "bun lint --write"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "files": [
-    "dist"
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ize-302/gitmo.git"
-  },
-  "keywords": [
-    "emoji",
-    "conventional commit"
-  ],
-  "author": {
-    "name": "ize-302",
-    "email": "adavize302@gmail.com",
-    "url": "https://ize-302.dev"
-  },
-  "bugs": {
-    "url": "https://github.com/ize-302/gitmo/issues"
-  },
-  "homepage": "https://github.com/ize-302/gitmo",
-  "dependencies": {
-    "commander": "^12.1.0",
-    "prompts": "^2.4.2",
-    "shelljs": "^0.8.5"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.0",
-    "@types/bun": "latest",
-    "@types/prompts": "^2.4.9",
-    "@types/shelljs": "^0.8.15",
-    "typescript": "^5.6.2"
-  },
-  "module": "index.ts",
-  "main": "dist/index.js"
+	"name": "gitmo",
+	"version": "1.0.0",
+	"description": "A cli tool that adds appropriate emoji to your commit message based on conventional commits specification",
+	"bin": {
+		"gitmo": "./dist/index.js"
+	},
+	"type": "module",
+	"scripts": {
+		"build": "bun run build:cli && bun run build:executables",
+		"prepublishOnly": "bun run build",
+		"clean": "rm -rf dist",
+		"lint": "bunx @biomejs/biome check src",
+		"lint:fix": "bun lint --write",
+		"build:cli": "bun build src/index.ts --target node --outfile dist/index.js --external shelljs --minify",
+		"build:executables": "pkg ./dist/index.js --output ./bin/gitmo --targets latest-linux-x64,latest-macos-x64,latest-win-x64"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": ["dist"],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ize-302/gitmo.git"
+	},
+	"keywords": ["emoji", "conventional commit"],
+	"author": {
+		"name": "ize-302",
+		"email": "adavize302@gmail.com",
+		"url": "https://ize-302.dev"
+	},
+	"bugs": {
+		"url": "https://github.com/ize-302/gitmo/issues"
+	},
+	"homepage": "https://github.com/ize-302/gitmo",
+	"dependencies": {
+		"commander": "^12.1.0",
+		"pkg": "^5.8.1",
+		"prompts": "^2.4.2",
+		"shelljs": "^0.8.5"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.0",
+		"@types/bun": "latest",
+		"@types/prompts": "^2.4.9",
+		"@types/shelljs": "^0.8.15",
+		"typescript": "^5.6.2"
+	},
+	"module": "index.ts",
+	"main": "dist/index.js"
 }
