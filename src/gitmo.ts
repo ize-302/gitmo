@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import shell from "shelljs";
 import packageJson from "../package.json";
+import emojisData from "@/emojis-data.json";
 
 import transformMessage from "@/utils/transformMessage.js";
 import hasStagedChanges from "@/utils/hasStagedChanges.js";
@@ -38,7 +39,7 @@ const gitmo = () => {
 
 		program
 			.command("ac [message]")
-			.description("Ament last commit")
+			.description("Amend last commit")
 			.action(async (message) => {
 				if (message) {
 					const transformedMessage = await transformMessage(message);
@@ -48,6 +49,18 @@ const gitmo = () => {
 					const transformedMessage = await transformMessage(response.commitMessage);
 					shell.exec(`git commit --amend -m '${transformedMessage}'`);
 				}
+			});
+
+		program
+			.command("list")
+			.description("List available commit types")
+			.action(async () => {
+				console.log("\n COMMIT TYPES \n");
+				for (let i = 0; i < emojisData.length; i++) {
+					const { name, emoji, description } = emojisData[i];
+					console.log(`${emoji} ${name.toString()}: ${description}`);
+				}
+				console.log("\n");
 			});
 
 		program
