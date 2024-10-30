@@ -35,7 +35,8 @@ Options:
 
 Commands:
   cm [message]    Submit commit
-  ac [message]    Ament last commit
+  ac [message]    Amend last commit
+  list    List available commit types
   update          Update gitmo cli
   help [command]  display help for command
 
@@ -85,7 +86,7 @@ press ENTER
 bun run build
 
 # Run command
-node ./dist/cli.js gitmo cm
+node ./dist/index.js cm
 ```
 
 ---
